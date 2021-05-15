@@ -1,0 +1,11 @@
+#bt1{
+    width: 200px;
+    text-align: center;
+    padding: 15px 20px;
+    border: 1px solid #eee;    
+}
+
+.container {
+    position: relative;
+    left: 400px;
+}
