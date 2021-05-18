@@ -77,7 +77,7 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             <input type="email" class="form-control" [ngClass]="cssValidator(f.email)" placeholder="Digite um email" formControlName="email">
             <div *ngIf="f.email.errors?.required" class="invalid-feedback" class="invalid-feedback">
               Campo é obrigatório.
-          </div>
+            </div>
           <div *ngIf="f.email.errors?.email && f.email.touched" class="invalid-feedback">
               Deve ser um endereço de e-mail válido
           </div> 

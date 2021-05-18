@@ -46,10 +46,6 @@ export class CadastroCursoComponent implements OnInit {
   get formAulas(): FormArray {
     return this.form.get('aulas') as FormArray;
   }
-
-  get f(): any {
-    return this.form.controls;
-  }
   
   get filtro(): string {
     return this.filtroLista;
@@ -141,8 +137,7 @@ export class CadastroCursoComponent implements OnInit {
   excluirCurso(curso: Curso, template: any) {
     this.openModal(template);    
     this.curso = curso;
-    this.bodyDeletarCurso = `Tem certeza que deseja excluir o Curso: ${curso.nome}, Código: ${curso.id}`;
-    
+    this.bodyDeletarCurso = `Tem certeza que deseja excluir o Curso: ${curso.nome}, Código: ${curso.id}`;    
   }
 
   confirmeDelete(template: any) {

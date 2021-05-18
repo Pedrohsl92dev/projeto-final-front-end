@@ -93,7 +93,7 @@ export class CadastroProfessorComponent implements OnInit {
     this.form.controls['email'].disable();
     this.form.controls['email'].updateValueAndValidity();
     this.form.controls['senha'].clearValidators();
-    this.form.controls['senha'].setAsyncValidators(null);
+    // this.form.controls['senha'].setAsyncValidators(null);
     this.form.controls['senha'].updateValueAndValidity();
     // console.log(this.form);
   }
