@@ -14,8 +14,6 @@ export class SenhaService {
   alterar(usuario: any): Observable<any> {
     return this.httpClient.put<any>(`${URL}/${usuario.rota.value}/alterarsenha/${usuario.id.value}`, usuario);
   }
-
-
 }
 
 

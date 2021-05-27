@@ -16,38 +16,40 @@ export class SenhaAlterarComponent implements OnInit {
     private service: SenhaService,
     private toastr: ToastrService,) { }
     
-    ngOnInit(): void {
-      this.user = JSON.parse(localStorage.getItem('user'));
-      this.validation()
-    }
+  ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.validation()
+  }
     
-    private validation() {    
-      this.form = this.fb.group({
-        id:[{value:this.user.id}],
-        novaSenha: ['', [Validators.required]],     
-        novaSenhaConfirma: ['', [Validators.required]],
-        senhaAtual: ['', Validators.required],
-        rota:[{value: Number(this.user.tipo) == 2 ? 'aluno' : 'professor'}]
-      });
-    }
-    alterarSenha() {
-      this.service.alterar(this.form.value).subscribe( 
-        () =>
-        {
-          this.toastr.success('Senha atualizada!');
-        },
-        (error) => {
-          this.toastr.error(`Erro ao tentar alterar senha: ${error.error.message}`);
-        })
+  private validation() {    
+    this.form = this.fb.group({
+      id:[{value:this.user.id}],
+      novaSenha: ['', [Validators.required]],     
+      novaSenhaConfirma: ['', [Validators.required]],
+      senhaAtual: ['', Validators.required],
+      rota:[{value: Number(this.user.tipo) == 2 ? 'aluno' : 'professor'}]
+    });
+  }
+    
+  alterarSenha() {
+    this.service.alterar(this.form.value).subscribe( 
+      () =>
+      {
+        this.toastr.success('Senha atualizada!');
+      },
+    (error) => {
+      this.toastr.error(`Erro ao tentar alterar senha: ${error.error.message}`);
+    })
+  }
+      
+  validaSenha() {
+    if(this.form.get('novaSenha').value && this.form.get('novaSenhaConfirma').value) {
+      if( this.form.get('novaSenha').value !== this.form.get('novaSenhaConfirma').value) {
+        this.form.get('novaSenhaConfirma').setValue('');
+        this.form.get('novaSenha').setValue('');
+        this.toastr.error('senhas não conferem!');
       }
-      validaSenha() {
-        if(this.form.get('novaSenha').value && this.form.get('novaSenhaConfirma').value) {
-          if( this.form.get('novaSenha').value !== this.form.get('novaSenhaConfirma').value) {
-            this.form.get('novaSenhaConfirma').setValue('');
-            this.form.get('novaSenha').setValue('');
-            this.toastr.error('senhas não conferem!');
-          }
-        }
-      }
     }
+  }
+}
     
